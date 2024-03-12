@@ -1,5 +1,9 @@
 function dollarsToRubles(dollars) {
-    let dollarsCount = dollars * 1.25;
-    return dollarsCount * 60;
+  const exchangeRate = 1.25;
+  const ruplePerDollar = 60;
+
+  const dollarsCount = dollars * exchangeRate;
+
+  return dollarsCount * ruplePerDollar;
 }
 module.exports = dollarsToRubles;

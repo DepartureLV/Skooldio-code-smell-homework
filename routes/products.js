@@ -1,22 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const createError = require('http-errors');
+const total = require('../total')
+const convert = require('../convert')
 
 // Products Array
 const products = [{ id: '1', name: 'Playstation 5', inStock: false }];
 
 router.get('/', (req, res) => {
-    console.log("Get all products");
-    console.log("All products " + products.length);
     res.json(products);
 });
 
 router.get('/:id', (req, res, next) => {
-    console.log("Target id = " + req.params.id)
     const product = products.find(
         (product) => product.id === String(req.params.id)
     );
-    console.log("Search result is " + product)
     if (!product) {
         return next(createError(404, 'Not Found'));
     }
@@ -31,7 +29,6 @@ router.post('/', (req, res, next) => {
     var newId = products.length + 1;
     const newProduct = { id: "'" + newId + "'", name: body.name, inStock: false, };
     products.push(newProduct);
-
     res.status(201).json(newProduct);
 });
 

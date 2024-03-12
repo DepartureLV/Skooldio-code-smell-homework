@@ -1,17 +1,18 @@
 function total(numbers) {
-    var result = 0;
-    var parts = numbers.split(',');
-    for (var i = 0; i < parts.length; i++) {
-        var integer = parseInt(parts[i]);
-        if (!isNaN(integer)) {
-            if (integer >= 0) {
-                if (integer <= 1000) {
-                    result += integer;
-                }
-            }
-        }
-    }
-    return result;
+    return numbers
+    .split(",")
+    .map(Number)
+    .filter(checkIfInteger)
+    .filter(checkIsAnIntegerIsInAValidRange)
+    .reduce((acc, curr) => acc + curr, 0);
+}
+
+function checkIfInteger(integer) {
+    return !isNaN(integer)
+}
+
+function checkIsAnIntegerIsInAValidRange(integer) {
+  return integer >= 0 && integer <= 1000;
 }
 
 module.exports = total;

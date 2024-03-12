@@ -73,4 +73,8 @@ describe("GET /", () => {
   it("POST / => item name correct data type check", () => {
     return request(app).post("/").send({ name: 123456789 }).expect(400);
   });
+
+  it("POST /total => item values correct data type check", () => {
+    return request(app).post("/total").send({ values: "1,2" }).expect(200);
+  });
 });

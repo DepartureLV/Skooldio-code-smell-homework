@@ -16,7 +16,6 @@ router.get('/:id', (req, res, next) => {
         (product) => product.id === String(req.params.id)
     );
     if (!product) {
-        console.log("Found nothing");
         return next(createError(404, 'Not Found'));
     }
     res.json(product);
